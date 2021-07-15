@@ -1284,3 +1284,19 @@ define KernelPackage/sfc-falcon/description
 endef
 
 $(eval $(call KernelPackage,sfc-falcon))
+
+define KernelPackage/lan78xx
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Microchip LAN78XX Based USB Ethernet Adapters support
+  DEPENDS:=@USB_SUPPORT
+  KCONFIG:=CONFIG_USB_LAN78XX	\
+	CONFIG_USB_NET_DRIVERS=y
+  FILES:=$(LINUX_DIR)/drivers/net/usb/lan78xx.ko
+  AUTOLOAD:=$(call AutoProbe,lan78xx)
+endef
+
+define KernelPackage/lan78xx/description
+ Kernel modules for Microchip LAN78XX Based USB Ethernet Adapters
+endef
+
+$(eval $(call KernelPackage,lan78xx))
